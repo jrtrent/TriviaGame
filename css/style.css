@@ -1,0 +1,22 @@
+body {
+    background-image: url("../images/tardisspace.jpg");
+    background-color: darkblue;
+}
+
+h1, #time {
+    text-align: center;
+}
+
+.container {
+    background-color: lightblue;
+    padding: 30px;
+    Margin: 50px;
+    vertical-align: center;
+}
+
+button {
+    background-color: lightseagreen;
+    float:center;
+    height: 100px;
+    width: 200px;
+}
