@@ -1,5 +1,6 @@
 $("#Start").on ('click', function(){
             $("#Start").remove()
+            timer = setInterval(game.time, 1000)
             $("#end").append("<button>" + "Submit" + "</button>")
             for (var i = 0; i< questions.length; i++){
                 $("#openpage").append("<div>"+ questions[i].question + "</div>");
@@ -36,37 +37,87 @@ $("#Start").on ('click', function(){
             }
         ];
 
-        var intervalID;
-        var clockRunning = false;
     
         var game = {
             rightAnswers: 0,
             wrongAnswers: 0,
             unAnswered: 0,
-            counter: 120,
+            time: 10,
         };
-            timer: (function(){
-                $("#counter").append(game.counter);
-                 if (!clockRunning) {
-                    intervalId = setInterval(game.counter, 1000);
-                    clockRunning = true;
-                    game.counter--;
+            function done(){
+                game.time--;
+                $("#counter").append(game.time);
+                 if (game.time<=0){
+                     console.log(no.time)
                 } else {
-                    console.log("no time");
+                    game.over();
                 }
-              }
+            }
 
-        game: (function() {
-            $.each($('input[name="questions-0]":checked'),
-            function(){
-                if($(this).val()==question[0].correctAnswer){
-                    game.rightAnswers++;
-                } else{
-                    game.wrongAnswer++;
+             function over(){
+                    $.each($('input[name="questions-0]":checked'), function() {
+                        if ($(this).val()==question[0].correctAnswer)
+                        { game.rightAnswers++;
+                        } else {
+                            game.wrongAnswer++;
+                        }  
+                });
+                    $.each($('input[name="questions-1]":checked'), function(){
+                        if ($(this).val()==question[1].correctAnswer)
+                        { game.rightAnswers++;
+                        } else {
+                            game.wrongAnswer++;
+                        }   
+                });
+                    $.each($('input[name="questions-2]":checked'),
+                    function(){
+                        if ($(this).val()==question[0].correctAnswer)
+                        { game.rightAnswers++;
+                        } else {
+                            game.wrongAnswer++;
+                        }    
+                });
+                    $.each($('input[name="questions-3]":checked'),
+                    function(){
+                        if($(this).val()==question[0].correctAnswer)
+                        { game.rightAnswers++;
+                        } else {
+                            game.wrongAnswer++;
+                        }  
+                });
+                    $.each($('input[name="questions-4]":checked'),
+                    function(){
+                        if($(this).val()==question[4].correctAnswer)
+                        { game.rightAnswers++;
+                        } else {
+                            game.wrongAnswer++;
+                        } 
+                });
+                    $.each($('input[name="questions-5]":checked'),
+                    function(){
+                        if($(this).val()==question[5].correctAnswer)
+                        { game.rightAnswers++;
+                        } else {
+                            game.wrongAnswer++;
+                        }    
+                });
+                    $.each($('input[name="questions-6]":checked'),
+                    function(){
+                        if($(this).val()==question[6].correctAnswer)
+                        { game.rightAnswers++;
+                        } else {
+                            game.wrongAnswer++;
+                        }    
+                });
+
+                this.answered();
+                function answered(){
+                    clearInterval(timer);
+                    $(".container").append("Right Answers:" + this.wrongAnswer);
+                    $(".container").append("Right Answers:" + this.wrongAnswer);
+                    $(".container").append("NotAnswered:" + questions.length-(this.rightAnswer_this.wrongAnswer));  
                 }
-                console.log(rightAnswers);
-            });
-        
+            }
     
 
     
